@@ -12,7 +12,7 @@ env:
     IMAGE2: sb
     TAGES: ${{ github.sha }}
 
-jobs:
+jobs: 
     Build:
         runs-on: ubuntu-latest
         steps:
