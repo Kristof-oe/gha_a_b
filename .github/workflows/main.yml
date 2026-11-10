@@ -7,7 +7,7 @@ on:
         branches: [main]  
 
 env:
-    REGISTRY: 
+    REGISTRY: "362099375729.dkr.ecr.eu-central-1.amazonaws.com"
     IMAGE1: sa
     IMAGE2: sb
     TAGES: ${{ github.sha }}
