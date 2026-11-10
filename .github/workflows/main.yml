@@ -43,7 +43,7 @@ jobs:
             password: ${{ secrets.SECRET_KEY }}
 
         - name: Builld and push A B
-          uses: docker/build_push-action@v7
+          uses: docker/build-push-action@v7
           with:
             context: ${{ matrix.context }}
             push: true
