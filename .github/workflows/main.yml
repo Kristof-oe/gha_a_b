@@ -12,8 +12,15 @@ env:
     IMAGE2: sb
     TAGES: ${{ github.sha }}
 
-jobs: 
+jobs:
+    Display:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Check sha
+          run: echo "this is sha ${{env.TAGES}}"
+
     Build:
+        needs: Display
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
