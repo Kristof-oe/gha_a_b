@@ -27,7 +27,7 @@ jobs:
                 include:
                     - name: A
                       context: app/sa/
-                      image: MAGE1
+                      image: IMAGE1
                     - name: B
                       context: app/sb/
                       image: IMAGE2
