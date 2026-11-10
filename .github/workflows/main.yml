@@ -22,6 +22,15 @@ jobs:
     Build:
         needs: Display
         runs-on: ubuntu-24.04-arm
+        strategy:
+            matrix:
+                include:
+                    - name: A
+                      context: app/sa/
+                      image: MAGE1
+                    - name: B
+                      context: app/sb/
+                      image: IMAGE2
         steps:
         - name: Checkout
           uses: actions/checkout@v4
@@ -33,19 +42,26 @@ jobs:
             username: ${{ secrets.ACCESS_KEY }}
             password: ${{ secrets.SECRET_KEY }}
 
-        - name: Build and push A
-          uses: docker/build-push-action@v7
+        - name: Builld and push A B
+          uses: docker/build_push-action@v7
           with:
-            context: app/sa/
+            context: ${{ matrix.context }}
             push: true
-            tags: ${{ env.REGISTRY}}/${{env.IMAGE1}}:${{env.TAGES}}
+            tags: ${{ env.REGISTRY}}/${{env[matrix.image]}}:${{env.TAGES}}
 
-        - name: Build and push B
-          uses: docker/build-push-action@v7
-          with:
-            context: app/sb/
-            push: true
-            tags: ${{ env.REGISTRY}}/${{env.IMAGE2}}:${{env.TAGES}}
+        # - name: Build and push A
+        #   uses: docker/build-push-action@v7
+        #   with:
+        #     context: app/sa/
+        #     push: true
+        #     tags: ${{ env.REGISTRY}}/${{env.IMAGE1}}:${{env.TAGES}}
+
+        # - name: Build and push B
+        #   uses: docker/build-push-action@v7
+        #   with:
+        #     context: app/sb/
+        #     push: true
+        #     tags: ${{ env.REGISTRY}}/${{env.IMAGE2}}:${{env.TAGES}}
 
 
 
